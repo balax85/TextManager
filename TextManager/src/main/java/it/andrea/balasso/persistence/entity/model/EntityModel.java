@@ -1,4 +1,4 @@
-package it.andrea.balasso.persiste.entity.model;
+package it.andrea.balasso.persistence.entity.model;
 
 import java.util.Date;
 

@@ -9,6 +9,42 @@
     <res-auth>Container</res-auth>
   </resource-ref> -->
   
+  <filter>
+		<filter-name>EntityManagerInterceptor</filter-name>
+		<filter-class>it.andrea.balasso.persistence.manager.EntityManagerInterceptor</filter-class>
+	</filter>
+	
+	  <filter-mapping>
+		<filter-name>EntityManagerInterceptor</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<display-name>CXFNonSpringJaxrsServlet</display-name>
+		<servlet-name>CXFNonSpringJaxrsServlet</servlet-name>
+		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<init-param>
+			<param-name>jaxrs.serviceClasses</param-name>
+			<param-value>
+				it.andrea.balasso.service.rest.PostServiceRest	
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jaxrs.address</param-name>
+			<param-value>/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jaxrs.providers</param-name>
+			<param-value>
+	           com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider
+			</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFNonSpringJaxrsServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+  
 	<persistence-context-ref>
 		<persistence-context-ref-name>persistence/em</persistence-context-ref-name>
   		<persistence-unit-name>textdbPersistence</persistence-unit-name>

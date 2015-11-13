@@ -1,6 +1,6 @@
-package it.andrea.balasso.persiste.entity;
+package it.andrea.balasso.persistence.entity;
 
-import it.andrea.balasso.persiste.entity.model.EntityModel;
+import it.andrea.balasso.persistence.entity.model.EntityModel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,12 +8,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="post.getAll",
+			query="select p from Post p"),
+	@NamedQuery(name="post.getPostById",
+			query="select p from Post p where p.id = :id")		
+})
+@Table(name="Post")
 public class Post extends EntityModel {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="title", length=100)
