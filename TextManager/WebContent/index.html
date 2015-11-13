@@ -1,0 +1,58 @@
+<!-- index.html -->
+    <!DOCTYPE html>
+
+    <!-- define angular app -->
+    <html ng-app="textApp">
+    <head>
+      <!-- SCROLLS -->
+      <!-- load bootstrap and fontawesome via CDN -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"  />
+
+      <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+      <script src="script.js"></script>
+    </head>
+
+    <!-- define angular controller -->
+    <body ng-controller="mainController">
+
+        <!-- HEADER AND NAVBAR -->
+        <header>
+            <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Text Manager application</a>
+                </div>
+
+<!--                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                    <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                </ul> -->
+            </div>
+            </nav>
+        </header>
+
+       <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main">
+
+		<div ng-controller="PostController">
+			
+			 <div ng-repeat="post in posts">
+				<li><a href="#"><i class="fa fa-home"></i>{{post.title}}</a></li>
+			</div>		
+			
+			
+			<button ng-click="$location.path('#/add')">Add post</button>
+			
+			<a type="button" href="#/add" class="btn btn-lg btn-success" >New Page</a>
+			
+		</div>
+		
+		<div ng-view></div>
+		
+    </div>
+
+    </body>
+    </html>
