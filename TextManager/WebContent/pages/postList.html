@@ -1,0 +1,7 @@
+	<!-- <button ng-click="$location.path('#/add')">Add post</button> -->
+		
+	<div ng-repeat="post in posts">
+		<li><a href="#/edit/{{post.id}}"><i class="fa fa-home"></i>{{post.title}}</a></li>
+	</div>	
+			
+	<a type="button" href="#/add" class="btn btn-lg btn-success" >Add new post</a>
