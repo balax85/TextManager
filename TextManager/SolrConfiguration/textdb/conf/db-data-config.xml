@@ -5,7 +5,7 @@
             user="root"
             password="test" /> 
   <document>
-    <entity name="id" query="select id, title, text, score from post;">
+    <entity name="id" query="select id, title, text, score from post order by insert_date;">
 		<field column="id" name="id" />
 		<field column="title" name="title" />
 		<field column="text" name="text" />

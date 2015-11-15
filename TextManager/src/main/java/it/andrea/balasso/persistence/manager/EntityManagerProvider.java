@@ -2,6 +2,11 @@ package it.andrea.balasso.persistence.manager;
 
 import javax.persistence.EntityManager;
 
+/**
+ * 
+ * @author Andrea Balasso
+ * provider for the entity manager 
+ */
 public class EntityManagerProvider {
 
 	private static final ThreadLocal<EntityManager> ENTITY_MANAGER = new ThreadLocal<>();

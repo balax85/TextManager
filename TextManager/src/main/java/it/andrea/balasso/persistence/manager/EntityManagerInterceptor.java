@@ -9,6 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+/**
+ * 
+ * @author Andrea Balasso
+ * interceptor to get the entitymanager. It intercept the call and than call the method requested
+ *
+ */
 public class EntityManagerInterceptor implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

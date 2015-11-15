@@ -6,8 +6,20 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * 
+ * @author Andrea Balasso
+ * util for the post context
+ *
+ */
 public class PostUtil {
 	
+	/**
+	 * calculate a score from title and text passed
+	 * @param title a title of the post
+	 * @param text the text of the post
+	 * @return return the score calculated
+	 */
 	public static Integer calculateScore(String title, String text) {
 		if (StringUtils.isEmpty(title) || StringUtils.isEmpty(text)) {
 			return 1;

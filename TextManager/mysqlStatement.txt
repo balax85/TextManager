@@ -1,0 +1,8 @@
+CREATE TABLE `Post` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `text` longtext DEFAULT NULL,
+  'score' smallint default 0,
+  `insert_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

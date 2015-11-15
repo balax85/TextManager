@@ -3,6 +3,12 @@ package it.andrea.balasso.service.rest.converter;
 import it.andrea.balasso.persistence.entity.Post;
 import it.andrea.balasso.service.rest.type.PostType;
 
+/**
+ * 
+ * @author Andrea Balasso
+ * Converter for the post context
+ *
+ */
 public class PostConverter {
 	
 	public static PostType postToPostType(Post post) {

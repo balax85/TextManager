@@ -34,7 +34,10 @@ public class PostServiceRest {
 	
 	/**
 	 * get all the post present in th DB
-	 * @return
+	 * @return the list of the posts
+	 * 
+	 * In the  first implementation I used this request to get the list of all posts. With the add of solr,
+	 * I changed the call to get all the posts with the solr services
 	 */
 	@GET
 	@Path("/getAll")
@@ -55,7 +58,8 @@ public class PostServiceRest {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PostType getPostById(@PathParam("id") Long id) {		
+	public PostType getPostById(@PathParam("id") Long id) {
+		if (id == null) return null;
 		return PostConverter.postToPostType(getEm().createNamedQuery("post.getPostById", Post.class).setParameter("id", id).getSingleResult());
 	}
 	
@@ -91,10 +95,19 @@ public class PostServiceRest {
 		return Response.ok().build();
 	}
 	
+	/**
+	 * 
+	 * @param id the id that I have to update
+	 * @param newPost the new data
+	 * @return result of the operation
+	 */
 	@PUT
 	@Path("/{id}/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updatePost(@PathParam("id") Long id, PostType newPost) {
+		
+		if (id == null) return Response.noContent().build();
+		
 		EntityManager em = getEm();
 		
 		try {

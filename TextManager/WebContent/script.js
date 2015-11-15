@@ -27,6 +27,7 @@
     
     textApp.controller('PostController', function($scope, $http) {
 
+    	//function to search the posts that have the searchText value in his text. I call the solr services to get the list
         $scope.searchPosts = function() {        	
 
         	$scope.searchText = $scope.searchText != null && $scope.searchText != undefined ? $scope.searchText : "";
@@ -43,6 +44,7 @@
             });
         };
         
+        //At the start I call explicitly the function searchPosts, that call solr with searchText = empty. In this manner I obtain alla the posts 
         $scope.searchPosts();
         
     });
@@ -75,6 +77,7 @@
     
     textApp.controller('EditPost', function($scope, $http, $location, $routeParams) {
 
+    	//I do a get to obtain the information to insert into the edit page 
     	var responsePromise = $http.get("rest/post/" + $routeParams.id);
 
         responsePromise.success(function(data, status, headers, config) {

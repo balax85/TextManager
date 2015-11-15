@@ -1,14 +1,11 @@
 package it.andrea.balasso.service.rest.type;
 
-import it.andrea.balasso.util.PostUtil;
-
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * 
  * @author Andrea Balasso
  * 
  * Support class that represent the information to send/receive to/from the client
+ * I divide the persistence class from the type that I use to return data to client
  *
  */
 public class PostType {

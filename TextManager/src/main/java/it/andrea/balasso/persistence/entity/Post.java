@@ -12,6 +12,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Andrea Balasso
+ *Entity that represents a post
+ */
 @Entity
 @NamedQueries({
 	@NamedQuery(name="post.getAll",
@@ -33,6 +38,11 @@ public class Post extends EntityModel {
 	@Lob
 	private String text;
 	
+	/**
+	 * I put this field in the persistence state for the implementation with solr. I use solr to get the list of posts and I need to show this data.
+	 * In this manner, I have more space occupied on the RDBMS, but minor operation that I need to do everytime that someone call the information about posts,
+	 * because I need to read it from the entity and not to calculate it.
+	 */
 	@Column(name="score")
 	private Integer score;
 
