@@ -1,5 +1,9 @@
 package it.andrea.balasso.service.rest.type;
 
+import it.andrea.balasso.util.PostUtil;
+
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 
  * @author Andrea Balasso
@@ -14,7 +18,9 @@ public class PostType {
 	private String title;
 	
 	private String text;
-
+	
+	private Integer score;
+	
 	public Long getId() {
 		return id;
 	}
@@ -37,6 +43,14 @@ public class PostType {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+	
+	public Integer getScore() {
+		return this.score;
+	}
+	
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 	
 }

@@ -5,10 +5,11 @@
             user="root"
             password="test" /> 
   <document>
-    <entity name="id" query="select id, title, text from post;">
+    <entity name="id" query="select id, title, text, score from post;">
 		<field column="id" name="id" />
 		<field column="title" name="title" />
 		<field column="text" name="text" />
+		<field column="score" name="score" />
 	</entity>	
 	
   </document>

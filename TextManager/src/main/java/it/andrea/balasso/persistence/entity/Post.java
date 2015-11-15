@@ -32,6 +32,9 @@ public class Post extends EntityModel {
 	@Column(name="text")
 	@Lob
 	private String text;
+	
+	@Column(name="score")
+	private Integer score;
 
 	public Long getId() {
 		return id;
@@ -60,6 +63,14 @@ public class Post extends EntityModel {
 	@Override
 	public String toString() {
 		return "Post [id=" + id + ", title=" + title + ", text=" + text + "]";
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 	
 }

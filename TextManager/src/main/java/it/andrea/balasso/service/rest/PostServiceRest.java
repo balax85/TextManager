@@ -2,8 +2,11 @@ package it.andrea.balasso.service.rest;
 
 import it.andrea.balasso.persistence.entity.Post;
 import it.andrea.balasso.persistence.manager.EntityManagerProvider;
+import it.andrea.balasso.service.rest.converter.PostConverter;
 import it.andrea.balasso.service.rest.type.PostType;
+import it.andrea.balasso.util.PostUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -36,8 +39,12 @@ public class PostServiceRest {
 	@GET
 	@Path("/getAll")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Post> getAllPost() {		
-		return getEm().createNamedQuery("post.getAll", Post.class).getResultList();
+	public List<PostType> getAllPost() {
+		List<PostType> postTypeList = new ArrayList<PostType>();
+		for (Post post : getEm().createNamedQuery("post.getAll", Post.class).getResultList()) {
+			postTypeList.add(PostConverter.postToPostType(post));
+		}
+		return postTypeList;
 	}
 	
 	/**
@@ -48,8 +55,8 @@ public class PostServiceRest {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Post getPostById(@PathParam("id") Long id) {		
-		return getEm().createNamedQuery("post.getPostById", Post.class).setParameter("id", id).getSingleResult();
+	public PostType getPostById(@PathParam("id") Long id) {		
+		return PostConverter.postToPostType(getEm().createNamedQuery("post.getPostById", Post.class).setParameter("id", id).getSingleResult());
 	}
 	
 	/**
@@ -69,6 +76,7 @@ public class PostServiceRest {
 			Post post = new Post();
 			post.setTitle(newPost.getTitle());
 			post.setText(newPost.getText());
+			post.setScore(PostUtil.calculateScore(newPost.getTitle(), newPost.getText()));
 		
 			em.persist(post);
 		
@@ -98,6 +106,7 @@ public class PostServiceRest {
 		
 			post.setTitle(newPost.getTitle());
 			post.setText(newPost.getText());
+			post.setScore(PostUtil.calculateScore(newPost.getTitle(), newPost.getText()));
 		
 			em.merge(post);
 		
