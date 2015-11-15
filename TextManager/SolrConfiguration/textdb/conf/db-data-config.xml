@@ -1,0 +1,15 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+            driver="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/textdb"
+            user="root"
+            password="test" /> 
+  <document>
+    <entity name="id" query="select id, title, text from post;">
+		<field column="id" name="id" />
+		<field column="title" name="title" />
+		<field column="text" name="text" />
+	</entity>	
+	
+  </document>
+</dataConfig>

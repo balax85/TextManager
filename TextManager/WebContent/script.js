@@ -3,6 +3,7 @@
     var textApp = angular.module('textApp', ['ngRoute']);
 
     textApp.config(function($routeProvider) {
+    	
         $routeProvider
 
         	.when('/', {
@@ -26,18 +27,23 @@
     
     textApp.controller('PostController', function($scope, $http) {
 
-    	var responsePromise = $http.get("rest/post/getAll");
+        $scope.searchPosts = function() {        	
 
-        responsePromise.success(function(data, status, headers, config) {
-            $scope.posts = data;
-        });
-        responsePromise.error(function(data, status, headers, config) {
-            alert("AJAX failed!");
-        });
-        
-        $scope.open = function(post) {
-        	$location.path("#/edit/" + post.id);
+        	$scope.searchText = $scope.searchText != null && $scope.searchText != undefined ? $scope.searchText : "";
+        	
+        	var searchPosts = $http.get("http://localhost:8983/solr/textdb/select?q=text%3A*" + $scope.searchText + "*&wt=json&indent=true");        	
+
+        	searchPosts.success(function(data, status, headers, config) {
+        		console.log(data);
+                $scope.posts = data.response.docs;
+            });        	
+        	searchPosts.error(function(data, status, headers, config) {
+        		console.log(data, status, headers, config);
+                alert("AJAX failed!");
+            });
         };
+        
+        $scope.searchPosts();
         
     });
     
