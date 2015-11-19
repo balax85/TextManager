@@ -1,0 +1,6 @@
+---
+JVMX version - Oct  6 2014 23:45:54 - 71_REL - optU - windows amd64 - 6 - bas2:226686 (mixed mode)
+Now: 2015-11-19 08:53:27, PID: 2548
+hostname: pc-balasso, current dir: C:\Users\balassoa\git\TextManager\TextManager
+---
+   :    [5208]  08:53:27    ***ERROR (:0): Java assert: "" in org.junit.Assert.fail(Assert.java:91)

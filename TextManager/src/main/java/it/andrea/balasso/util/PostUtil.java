@@ -33,10 +33,10 @@ public class PostUtil {
 	    while (BreakIterator.DONE != lastIndex || lastIndex > title.length()) {
 	        int firstIndex = lastIndex;
 	        lastIndex = breakIterator.next();
-	        if (lastIndex != BreakIterator.DONE && lastIndex > title.length() && Character.isLetterOrDigit(text.charAt(firstIndex))) {
-	        	String word = text.substring(firstIndex, lastIndex);
+	        if (lastIndex != BreakIterator.DONE && lastIndex <= title.length() && Character.isLetterOrDigit(title.charAt(firstIndex))) {
+	        	String word = title.substring(firstIndex, lastIndex);
 	        	if (words.get(word) == null) {
-	        		words.put(text.substring(firstIndex, lastIndex), new Integer(0));
+	        		words.put(title.substring(firstIndex, lastIndex), new Integer(0));
 	        	} 
 	        }
 	    }
@@ -46,7 +46,7 @@ public class PostUtil {
 	    while (BreakIterator.DONE != lastIndex) {
 	        int firstIndex = lastIndex;
 	        lastIndex = breakIterator.next();
-	        if (lastIndex != BreakIterator.DONE && Character.isLetterOrDigit(text.charAt(firstIndex))) {
+	        if (lastIndex != BreakIterator.DONE && lastIndex <= text.length()  && Character.isLetterOrDigit(text.charAt(firstIndex))) {
 	        	String word = text.substring(firstIndex, lastIndex);
 	        	if (words.get(word) != null) {
 	        		Integer value = words.get(word) + 1;
@@ -55,11 +55,12 @@ public class PostUtil {
 	        }
 	    }
 	    
-	    Integer score = 1;
+	    Integer score = 0;
 	    for(String key : words.keySet()) {
 	    	if (words.get(key) > 0) score++;
 	    }
 	    
+	    if (score < 1) score = 1;
 	    if (score > 10) score = 10;
 	    
 	    return score;
